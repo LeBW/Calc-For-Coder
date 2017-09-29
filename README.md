@@ -8,4 +8,5 @@ Written in Swift 4, Xcode 9.
 
 Here is the interface:
 
-![image](http://github.com/LeBW/My-Calculator/raw/master/capture.png)
+<img src="capture.png" width="200">
+
