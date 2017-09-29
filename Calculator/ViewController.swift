@@ -11,15 +11,38 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var display: UILabel!
+    
+    
+    @IBOutlet weak var auxDisplay: UILabel!
+    
     var userIsInTheMiddleOfTyping:Bool = false
     @IBAction func touchDigit(_ sender: UIButton) {
+        brain.tellMeYouAreTypingDigit()
         let digit = sender.currentTitle!
-        if userIsInTheMiddleOfTyping{
-            let textCurrentlyDisplay = display.text!
-            display.text = textCurrentlyDisplay + digit
-        }else{
-            display.text = digit
-            userIsInTheMiddleOfTyping = true
+        if digit == "." {
+            if display.text!.contains(".") {
+               return
+            }
+            if userIsInTheMiddleOfTyping{
+                let textCurrentDisplay = display.text!
+                display.text = textCurrentDisplay + digit
+            }
+            else{
+                display.text = "0" + digit
+                userIsInTheMiddleOfTyping = true
+            }
+        }
+        else
+        {
+            if userIsInTheMiddleOfTyping{
+                let textCurrentlyDisplay = display.text!
+                display.text = textCurrentlyDisplay + digit
+            }else{
+                display.text = digit
+                if(digit != "0"){
+                    userIsInTheMiddleOfTyping = true
+                }
+            }
         }
     }
     var displayValue: Double{
@@ -42,9 +65,20 @@ class ViewController: UIViewController {
            brain.performOperations(mathmaticalSymbol)
         }
         if let result = brain.result{
-            displayValue = result
+     /*       if result == 520{
+                display.text = "我爱你，吴欣宜"
+            }
+            else{
+ */
+                displayValue = result
+        //    }
         }
-        
+        if(brain.resultIsPending){
+            auxDisplay.text = brain.description + " ..."
+        }
+        else{
+            auxDisplay.text = brain.description + " ="
+        }
     }
     
 }
