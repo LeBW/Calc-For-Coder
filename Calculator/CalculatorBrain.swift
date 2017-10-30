@@ -22,8 +22,9 @@ func factorial(operand:Double) -> Double{
 }
 struct CalculatorBrain{
     private var accumulator:Double?
-    public var resultIsPending = true
+    public var resultIsPending = false
     public var description:String = ""
+    private var tempDescription = ""
     private enum Operation {
         case constant(Double)
         case unaryOperation((Double)->Double)
@@ -80,19 +81,31 @@ struct CalculatorBrain{
         if let operation = operations[symbol]{
             switch operation {
             case .constant(let value):
+                if resultIsPending {
+                    description += " " + symbol
+                }
+                else {
+                    description = symbol
+                }
                 accumulator = value
             case .unaryOperation(let function):
-                if accumulator != nil{
-                accumulator = function(accumulator!)
-                }
-            case .binaryOperation(let function):
-                if accumulator != nil{
-                    if resultIsPending{
-                        description += " " + (String(format:"%g",  accumulator!) + " " + symbol)
+                if accumulator != nil {
+                    if resultIsPending {
+                        tempDescription = " " + symbol + "(" + tempDescription + ")"
+                        description += tempDescription
+                        tempDescription = " "
                     }
                     else{
-                        description += " " + symbol
+                        description = symbol + "(" + description + ")"
                     }
+                    accumulator = function(accumulator!)
+                }
+                
+            case .binaryOperation(let function):
+                if accumulator != nil{
+                    description += tempDescription
+                    tempDescription = " "
+                    description += " " + symbol + " "
                     if pendingBinaryOperation != nil{
                         accumulator = pendingBinaryOperation?.perform(with: accumulator!)
                     }
@@ -101,7 +114,9 @@ struct CalculatorBrain{
                 }
             case .equals:
                 if pendingBinaryOperation != nil && accumulator != nil{
-                    description += (" " + String(format:"%g",  accumulator!))
+              //      description += (" " + String(format:"%g",  accumulator!))
+                    description += tempDescription
+                    tempDescription = " "
                     accumulator = pendingBinaryOperation?.perform(with: accumulator!)
                     pendingBinaryOperation = nil
                     resultIsPending = false
@@ -109,19 +124,21 @@ struct CalculatorBrain{
             case .AC:
                 accumulator = 0
                 description = " "
-                resultIsPending = true
+                tempDescription = " "
+                resultIsPending = false
                 pendingBinaryOperation = nil
             }
         }
     }
     mutating func setOperand(_ operand:Double){
         accumulator = operand
+        tempDescription = String(format:"%g",  accumulator!)
     }
     mutating func tellMeYouAreTypingDigit(){
         if(!resultIsPending){
             accumulator = 0
             description = " "
-            resultIsPending = true
+            resultIsPending = false
             pendingBinaryOperation = nil
         }
     }
