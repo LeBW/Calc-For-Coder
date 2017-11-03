@@ -113,7 +113,7 @@ struct CalculatorBrain{
                 }
                 
             case .binaryOperation(let function):
-                if pendingBinaryOperation == nil && accumulator != nil{
+                if (pendingBinaryOperation == nil || (pendingBinaryOperation != nil && tempDescription != nil)) && accumulator != nil{
                     if let temp = tempDescription{
                         description += temp
                         tempDescription = nil
