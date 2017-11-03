@@ -1,12 +1,12 @@
 # My-Calculator
 
-This is a calculator in iOS device.
+## CS193p Stanford University Calculator demo. ing...
 
-My first app in iOS.
+
 
 Written in Swift 4, Xcode 9.
 
-Here is the interface:
+Screen shot
 
 <img src="capture.png" width="200">
 
