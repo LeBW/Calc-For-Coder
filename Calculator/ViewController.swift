@@ -17,7 +17,8 @@ class ViewController: UIViewController {
     
     var userIsInTheMiddleOfTyping:Bool = false
     @IBAction func touchDigit(_ sender: UIButton) {
-        brain.tellMeYouAreTypingDigit()
+        //brain.evaluate()
+        
         let digit = sender.currentTitle!
         if digit == "." {
             if display.text!.contains(".") {
@@ -64,20 +65,17 @@ class ViewController: UIViewController {
         if let mathmaticalSymbol = sender.currentTitle{
            brain.performOperations(mathmaticalSymbol)
         }
-        if let result = brain.result{
-     /*       if result == 520{
-                display.text = "我爱你，吴欣宜"
-            }
-            else{
- */
-                displayValue = result
-        //    }
+        let (result, isPending, description) = brain.evaluate()
+        if result != nil {
+            //could add something here to change view
+            displayValue = result!
         }
-        if(brain.resultIsPending){
-            auxDisplay.text = brain.description + " ..."
+        
+        if isPending{
+            auxDisplay.text = description + " ..."
         }
         else{
-            auxDisplay.text = brain.description + " ="
+            auxDisplay.text = description + " ="
         }
     }
     
