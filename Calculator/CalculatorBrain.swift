@@ -20,11 +20,14 @@ func factorial(operand:Double) -> Double{
     }
     return isOverflow ? Double.nan : Double(result)
 }
+
+
+
 struct CalculatorBrain{
     private var accumulator:Double?
     public var resultIsPending = false
     public var description:String = ""
-    private var tempDescription = ""
+    private var tempDescription:String? = nil
     private enum Operation {
         case constant(Double)
         case unaryOperation((Double)->Double)
@@ -32,6 +35,13 @@ struct CalculatorBrain{
         case equals
         case AC
     }
+    
+    private enum ExpressionLiteral {
+        case operand(Double)
+        case operation(String)
+        case varible(String)
+    }
+    private var sequences = [ExpressionLiteral]()
     
     private var operations: Dictionary<String, Operation> = [
         "π": Operation.constant(Double.pi),
@@ -90,10 +100,11 @@ struct CalculatorBrain{
                 accumulator = value
             case .unaryOperation(let function):
                 if accumulator != nil {
-                    if resultIsPending {
-                        tempDescription = " " + symbol + "(" + tempDescription + ")"
-                        description += tempDescription
-                        tempDescription = " "
+                    if var temp = tempDescription {
+                        temp = " " + symbol + "(" + temp + ")"
+                        description += temp
+                        tempDescription = nil
+                        
                     }
                     else{
                         description = symbol + "(" + description + ")"
@@ -102,9 +113,11 @@ struct CalculatorBrain{
                 }
                 
             case .binaryOperation(let function):
-                if accumulator != nil{
-                    description += tempDescription
-                    tempDescription = " "
+                if pendingBinaryOperation == nil && accumulator != nil{
+                    if let temp = tempDescription{
+                        description += temp
+                        tempDescription = nil
+                    }
                     description += " " + symbol + " "
                     if pendingBinaryOperation != nil{
                         accumulator = pendingBinaryOperation?.perform(with: accumulator!)
@@ -113,18 +126,23 @@ struct CalculatorBrain{
                     resultIsPending = true
                 }
             case .equals:
-                if pendingBinaryOperation != nil && accumulator != nil{
+               // if pendingBinaryOperation != nil && accumulator != nil{
+                if accumulator != nil {
               //      description += (" " + String(format:"%g",  accumulator!))
-                    description += tempDescription
-                    tempDescription = " "
-                    accumulator = pendingBinaryOperation?.perform(with: accumulator!)
-                    pendingBinaryOperation = nil
-                    resultIsPending = false
+                    if let temp = tempDescription {
+                        description += temp
+                        tempDescription = nil
+                    }
+                    if pendingBinaryOperation != nil {
+                        accumulator = pendingBinaryOperation?.perform(with: accumulator!)
+                        pendingBinaryOperation = nil
+                        resultIsPending = false
+                    }
                 }
             case .AC:
                 accumulator = 0
-                description = " "
-                tempDescription = " "
+                description = ""
+                tempDescription = nil
                 resultIsPending = false
                 pendingBinaryOperation = nil
             }
@@ -134,10 +152,17 @@ struct CalculatorBrain{
         accumulator = operand
         tempDescription = String(format:"%g",  accumulator!)
     }
+    func setOperand(variable named:String){
+        
+    }
+    func evaluate(using variables: Dictionary<String,Double>? = nil) -> (result:Double?, isPending:Bool, description:String){
+        return (nil, false, "")
+    }
+    
     mutating func tellMeYouAreTypingDigit(){
         if(!resultIsPending){
             accumulator = 0
-            description = " "
+            description = ""
             resultIsPending = false
             pendingBinaryOperation = nil
         }
