@@ -21,16 +21,28 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PeK-nr-gTy">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="l0s-Nq-uEw">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="l0s-Nq-uEw">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vM-E2-Jek">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="CYJ-ln-nHW">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="24"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrk-0u-6HB">
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="24"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vM-E2-Jek">
+                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="24"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Frf-qd-cp9">
                                                 <rect key="frame" x="0.0" y="24" width="375" height="95.5"/>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -158,7 +170,7 @@
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="performAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="j3X-kq-TbB"/>
+                                                            <action selector="clear:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W73-yh-kHa"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -214,11 +226,11 @@
                                                         <rect key="frame" x="304" y="0.0" width="71" height="83"/>
                                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                        <state key="normal" title="%">
+                                                        <state key="normal" title="Undo">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="performAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pj2-oe-ZZX"/>
+                                                            <action selector="Undo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rng-rd-X9K"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -274,11 +286,11 @@
                                                         <rect key="frame" x="304" y="0.0" width="71" height="82.5"/>
                                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                        <state key="normal" title="x!">
+                                                        <state key="normal" title="M">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="performAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jZ6-vk-yDI"/>
+                                                            <action selector="usingVariables:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BYG-p2-8PU"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -334,11 +346,11 @@
                                                         <rect key="frame" x="304" y="0.0" width="71" height="83"/>
                                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                        <state key="normal" title="x²">
+                                                        <state key="normal" title="→M">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="performAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yq0-t6-2Ib"/>
+                                                            <action selector="addVariables:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o6A-ic-qds"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -420,11 +432,12 @@
                     <connections>
                         <outlet property="auxDisplay" destination="1vM-E2-Jek" id="HCr-o6-zP3"/>
                         <outlet property="display" destination="Frf-qd-cp9" id="hvK-cz-6Md"/>
+                        <outlet property="valueofM" destination="hrk-0u-6HB" id="Y9X-Kw-5v3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-673" y="44"/>
+            <point key="canvasLocation" x="-2410" y="-475"/>
         </scene>
     </scenes>
 </document>

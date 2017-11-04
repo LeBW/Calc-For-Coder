@@ -14,6 +14,7 @@
 		56DD97FA1F74AC6B003D8B18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56DD97F81F74AC6B003D8B18 /* Main.storyboard */; };
 		56DD97FC1F74AC6B003D8B18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56DD97FB1F74AC6B003D8B18 /* Assets.xcassets */; };
 		56DD98091F74ADA7003D8B18 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DD98081F74ADA7003D8B18 /* Default-568h@2x.png */; };
+		56F1B6A01FAD617E00626332 /* VariableDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F1B69F1FAD617E00626332 /* VariableDictionary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		56DD97FB1F74AC6B003D8B18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56DD98001F74AC6B003D8B18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56DD98081F74ADA7003D8B18 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		56F1B69F1FAD617E00626332 /* VariableDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableDictionary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				56DD97F61F74AC6B003D8B18 /* ViewController.swift */,
+				56F1B69F1FAD617E00626332 /* VariableDictionary.swift */,
 				5630C1461F77EA14001EFC31 /* CalculatorBrain.swift */,
 				56DD97F81F74AC6B003D8B18 /* Main.storyboard */,
 				56DD98071F74AD3D003D8B18 /* Supporting Files */,
@@ -155,6 +158,7 @@
 				5630C1471F77EA14001EFC31 /* CalculatorBrain.swift in Sources */,
 				56DD97F71F74AC6B003D8B18 /* ViewController.swift in Sources */,
 				56DD97F51F74AC6B003D8B18 /* AppDelegate.swift in Sources */,
+				56F1B6A01FAD617E00626332 /* VariableDictionary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

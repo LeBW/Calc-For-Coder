@@ -42,7 +42,6 @@ struct CalculatorBrain{
         case unaryOperation((Double)->Double)
         case binaryOperation((Double, Double) -> Double)
         case equals
-        case AC
     }
     
     private enum ExpressionLiteral {
@@ -73,7 +72,7 @@ struct CalculatorBrain{
         "%": Operation.binaryOperation({ (s1:Double, s2:Double) -> Double in
             return s1.truncatingRemainder(dividingBy: s2)
         }),
-        "AC": Operation.AC
+        //"AC": Operation.AC
     ]
     private struct PendingBinaryOperaion {
         let function: (Double, Double) -> Double
@@ -91,6 +90,11 @@ struct CalculatorBrain{
     }
     mutating func setOperand(variable named: String) {
         sequences.append(.varible(named))
+    }
+    mutating func undo(){
+        if !sequences.isEmpty {
+            sequences.removeLast()
+        }
     }
     func evaluate(using variables: Dictionary<String,Double>? = nil) -> (result:Double?, isPending:Bool, description:String){
         var accumulator:Double?
@@ -166,12 +170,13 @@ struct CalculatorBrain{
                             resultIsPending = false
                         }
                     }
-                case .AC:
+               /* case .AC:
                     accumulator = 0
                     description = ""
                     tempDescription = nil
                     resultIsPending = false
                     pendingBinaryOperation = nil
+                    */
                 }
             }
         }
