@@ -33,7 +33,7 @@
 	<key>UIRequiresFullScreen</key>
 	<true/>
 	<key>UIStatusBarHidden</key>
-	<false/>
+	<true/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackOpaque</string>
 	<key>UISupportedInterfaceOrientations</key>
