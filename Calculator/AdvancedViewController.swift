@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  AdvancedViewController.swift
 //  Calculator
 //
 //  Created by xy-nju on 2017/9/22.
@@ -8,14 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class AdvancedViewController: UIViewController {
 
     @IBOutlet weak var display: UILabel!
-    
-    
     @IBOutlet weak var auxDisplay: UILabel!
-    
     @IBOutlet weak var valueofM: UILabel!
+    
+    //var delegate: AdvancedViewControllerDelegate?
     
     var userIsInTheMiddleOfTyping:Bool = false
     @IBAction func touchDigit(_ sender: UIButton) {
@@ -64,6 +63,9 @@ class ViewController: UIViewController {
         if result != nil {
             //could add something here to change view
             displayValue = result!
+            if result == 520 {
+                display.text = "I love you, my Gloria"
+            }
         }
         
         if isPending{
@@ -134,3 +136,9 @@ class ViewController: UIViewController {
     }
 }
 
+/*
+@objc
+protocol AdvancedViewControllerDelegate {
+    @objc optional func collapseSidePanel()
+}
+ */
