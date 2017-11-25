@@ -31,7 +31,7 @@ class ContainerViewController: UIViewController {
         super.viewDidLoad()
         initAllCalculatorViewController()
         addLeftPanelViewController()
-        setCenterViewController(willbe: adVancedViewController)
+        setCenterViewController(willbe: hexViewController)
         /*add gesture recognizer
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
         centerViewController.view.addGestureRecognizer(panGestureRecognizer)
@@ -45,7 +45,7 @@ class ContainerViewController: UIViewController {
         hexViewController.view.addGestureRecognizer(setPanGestureRecognizer())
         
         //除了第一个viewController外，其余的view初始应该在中间处
-        hexViewController.view.center.x += targetPositionX
+        adVancedViewController.view.center.x += targetPositionX
     }
     private func setPanGestureRecognizer() -> UIPanGestureRecognizer{
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
