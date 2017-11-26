@@ -74,6 +74,7 @@ struct CalculatorBrain{
         }),
         //"AC": Operation.AC
     ]
+    private var ans: Double?
     private struct PendingBinaryOperaion {
         let function: (Double, Double) -> Double
         let firstOperand: Double
@@ -200,6 +201,7 @@ struct CalculatorBrain{
             }
             
         }
+        
         return (accumulator, resultIsPending, description)
     }
     

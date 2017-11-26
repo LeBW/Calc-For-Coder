@@ -42,6 +42,7 @@ class HexViewController: UIViewController {
         }
     }
     private var brain = CalculatorBrain()
+    var ans: Int?
     
     //MARK: Private methods
     ///use the value to update all of three displays(hex, dec, bin)
@@ -71,6 +72,7 @@ class HexViewController: UIViewController {
             }
         case .hex:
             for (_, button) in digitButton {
+                button.isEnabled = true
                 button.backgroundColor = UIColor(red: 239/255, green: 239/255, blue: 244/255, alpha: 1)
             }
         }
@@ -107,14 +109,17 @@ class HexViewController: UIViewController {
         brain = CalculatorBrain()
     }
     private func popupAlert() {
-        let alert = UIAlertController(title: "Error", message: "Input error", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
+        let alert = UIAlertController(title: "Overflow Error", message: "The value is too large!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .destructive, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     private func evaluate() {
-        let (result, _, _) = brain.evaluate()
+        let (result, isPending, _) = brain.evaluate()
         if let result = result {
             decValue = Int(result)
+            if !isPending {
+                ans = Int(result)
+            }
         }
     }
     //MARK: Outlets and actions
@@ -204,6 +209,14 @@ class HexViewController: UIViewController {
             evaluate()
         }
     }
+    @IBAction func ansTapped(_ sender: UIButton) {
+        if let ans = ans {
+            userIsInTheMiddleOfTyping = false
+            brain.setOperand(Double(ans))
+            evaluate()
+        }
+    }
+    
     @IBAction func decStateTapped(_ sender: UITapGestureRecognizer) {
         if sender.state == .ended {
             calculateState = .dec

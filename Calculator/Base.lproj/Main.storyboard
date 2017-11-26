@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -779,11 +778,11 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="pqT-WH-EyX">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="pqT-WH-EyX">
                                                 <rect key="frame" x="0.0" y="352" width="375" height="87"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPk-zK-cld">
-                                                        <rect key="frame" x="0.0" y="0.0" width="74.5" height="87"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="74" height="87"/>
                                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="0">
@@ -794,7 +793,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Yp-bZ-Lab">
-                                                        <rect key="frame" x="75.5" y="0.0" width="74.5" height="87"/>
+                                                        <rect key="frame" x="75" y="0.0" width="74.5" height="87"/>
                                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="±">
@@ -805,7 +804,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZgA-Qp-ose">
-                                                        <rect key="frame" x="151" y="0.0" width="74.5" height="87"/>
+                                                        <rect key="frame" x="150.5" y="0.0" width="74" height="87"/>
                                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="Undo">
@@ -815,8 +814,19 @@
                                                             <action selector="undo:" destination="G2I-cn-oTB" eventType="touchUpInside" id="P1a-Ci-X1G"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7CM-6u-drY">
+                                                        <rect key="frame" x="225.5" y="0.0" width="74.5" height="87"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                        <state key="normal" title="Ans">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="ansTapped:" destination="G2I-cn-oTB" eventType="touchUpInside" id="jfk-Ea-dFj"/>
+                                                        </connections>
+                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glq-A5-4tl">
-                                                        <rect key="frame" x="226.5" y="0.0" width="148.5" height="87"/>
+                                                        <rect key="frame" x="301" y="0.0" width="74" height="87"/>
                                                         <color key="backgroundColor" red="1" green="0.57457399368286133" blue="0.0019781978335231543" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="=">
@@ -827,11 +837,6 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="9Yp-bZ-Lab" firstAttribute="width" secondItem="LPk-zK-cld" secondAttribute="width" id="2Xh-hN-LQf"/>
-                                                    <constraint firstItem="ZgA-Qp-ose" firstAttribute="width" secondItem="9Yp-bZ-Lab" secondAttribute="width" id="ahE-kh-4AB"/>
-                                                    <constraint firstItem="glq-A5-4tl" firstAttribute="width" secondItem="ZgA-Qp-ose" secondAttribute="width" multiplier="2" id="mUR-Of-tdq"/>
-                                                </constraints>
                                             </stackView>
                                         </subviews>
                                     </stackView>
