@@ -124,20 +124,39 @@ struct CalculatorBrain{
                     accumulator = value
                 case .unaryOperation(let function):
                     if accumulator != nil {
-                        if var temp = tempDescription {
-                            temp = " " + symbol + "(" + temp + ")"
-                            if resultIsPending {
-                                description += temp
+                        if symbol == "x²" {
+                            if var temp = tempDescription {
+                                temp = " " + temp + "²"
+                                if resultIsPending {
+                                    description += temp
+                                }
+                                else{
+                                    description = temp
+                                }
+                                tempDescription = nil
+                                
                             }
                             else{
-                                description = temp
+                                description = "(" + description + ")" + "²"
                             }
-                            tempDescription = nil
-                            
                         }
-                        else{
-                            description = symbol + "(" + description + ")"
+                        else {
+                            if var temp = tempDescription {
+                                temp = " " + symbol + "(" + temp + ")"
+                                if resultIsPending {
+                                    description += temp
+                                }
+                                else{
+                                    description = temp
+                                }
+                                tempDescription = nil
+                                
+                            }
+                            else{
+                                description = symbol + "(" + description + ")"
+                            }
                         }
+                        
                         accumulator = function(accumulator!)
                     }
                     
@@ -171,25 +190,10 @@ struct CalculatorBrain{
                             resultIsPending = false
                         }
                     }
-               /* case .AC:
-                    accumulator = 0
-                    description = ""
-                    tempDescription = nil
-                    resultIsPending = false
-                    pendingBinaryOperation = nil
-                    */
                 }
             }
         }
-     /*   func tellMeYouAreTypingDigit(){
-            if(!resultIsPending){
-                accumulator = 0
-                description = ""
-                resultIsPending = false
-                pendingBinaryOperation = nil
-            }
-        }
- */
+
         for element in sequences {
             switch element{
             case .operand(let operand):

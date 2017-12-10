@@ -30,7 +30,9 @@ class HexViewController: UIViewController {
             updateDigitButton()
             setHighlighed()
             //clear
-            clearAll()
+            if userIsInTheMiddleOfTyping {
+                clearAll()
+            }
         }
     }
     var decValue: Int {
@@ -49,8 +51,15 @@ class HexViewController: UIViewController {
     private func updateAllDisplayWith(value: Int) {
         
         decDisplay.text = String(value)
-        hexDisplay.text = String(value, radix: 16, uppercase: true)
-        binDisplay.text = String(value, radix: 2, uppercase: true)
+        if (decValue >= 0) {
+            hexDisplay.text = String(value, radix: 16, uppercase: true)
+            binDisplay.text = String(value, radix: 2, uppercase: true)
+        }
+        else {
+            let complement = 0xFFFFFFFF + value + 1
+            hexDisplay.text = String(complement, radix: 16, uppercase: true)
+            binDisplay.text = String(complement, radix: 2, uppercase: true)
+        }
     }
     /// change the useful button according to the Calculator state.
     private func updateDigitButton() {
@@ -108,14 +117,23 @@ class HexViewController: UIViewController {
         decValue = 0
         brain = CalculatorBrain()
     }
-    private func popupAlert() {
+    private func popupOverflowAlert() {
         let alert = UIAlertController(title: "Overflow Error", message: "The value is too large!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Close", style: .destructive, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: clearAll)
+    }
+    private func popupDividedByZeroAlert() {
+        let alert = UIAlertController(title: "Divide Error", message: "Can't divide 0!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .destructive, handler: nil))
+        self.present(alert, animated: true, completion: clearAll)
     }
     private func evaluate() {
         let (result, isPending, _) = brain.evaluate()
         if let result = result {
+            guard result != Double.nan && result != Double.infinity else {
+                popupDividedByZeroAlert()
+                return
+            }
             decValue = Int(result)
             if !isPending {
                 ans = Int(result)
@@ -145,35 +163,35 @@ class HexViewController: UIViewController {
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
         if userIsInTheMiddleOfTyping {
-            displayLabels[calculateState]?.text?.append(digit)
+            if decValue != 0 || digit != "0" {
+                displayLabels[calculateState]?.text?.append(digit)
+            }
         }
         else {
             displayLabels[calculateState]?.text = digit
-            if digit != "0" {
-                userIsInTheMiddleOfTyping = true
-            }
+            userIsInTheMiddleOfTyping = true
         }
         switch calculateState {
         case .dec:
             guard let dv = Int(decDisplay.text!) else {
                 // 弹窗警告
-                popupAlert()
+                popupOverflowAlert()
                 
-                clearAll()
+                //clearAll()
                 return
             }
             decValue = dv
         case .bin:
             guard let dv = Int(binDisplay.text!, radix: 2) else {
-                popupAlert()
-                clearAll()
+                popupOverflowAlert()
+                //clearAll()
                 return
             }
             decValue = dv
         case .hex:
             guard let dv = Int(hexDisplay.text!, radix: 16) else {
-                popupAlert()
-                clearAll()
+                popupOverflowAlert()
+                //clearAll()
                 return
             }
             decValue = dv

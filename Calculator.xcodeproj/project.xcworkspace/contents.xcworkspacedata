@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Calculator.xcodeproj">
+      location = "group:/Users/lbw/Developer/Xcode Projects/My-Calculator/Calculator/GraphingView.swift">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

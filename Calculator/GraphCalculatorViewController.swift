@@ -1,29 +1,44 @@
 //
-//  AdvancedViewController.swift
+//  GraphCalculatorViewController.swift
 //  Calculator
 //
-//  Created by xy-nju on 2017/9/22.
-//  Copyright © 2017年 Nanjing University. All rights reserved.
+//  Created by 李博文 on 09/12/2017.
+//  Copyright © 2017 Nanjing University. All rights reserved.
 //
 
 import UIKit
 
-class AdvancedViewController: UIViewController {
-
+class GraphCalculatorViewController: UIViewController {
+    //MARK: Properties
     @IBOutlet weak var display: UILabel!
     @IBOutlet weak var auxDisplay: UILabel!
     @IBOutlet weak var valueofM: UILabel!
-    
-    //var delegate: AdvancedViewControllerDelegate?
+    @IBOutlet weak var graphButton: UIButton!
     
     var userIsInTheMiddleOfTyping:Bool = false
+    
+    //MARK: viewController lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        graphButton.isEnabled = false
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    //MARK: Actions
     @IBAction func touchDigit(_ sender: UIButton) {
         //brain.evaluate()
         
         let digit = sender.currentTitle!
         if digit == "." {
             if display.text!.contains(".") {
-               return
+                return
             }
             if userIsInTheMiddleOfTyping{
                 let textCurrentDisplay = display.text!
@@ -71,9 +86,11 @@ class AdvancedViewController: UIViewController {
         
         if isPending{
             auxDisplay.text = description + " ..."
+            graphButton.isEnabled = false
         }
         else{
             auxDisplay.text = description + " ="
+            graphButton.isEnabled = true
         }
         if let m = dictionary.variableDictionary["M"]{
             valueofM.text = "M = \(m)"
@@ -89,7 +106,7 @@ class AdvancedViewController: UIViewController {
         }
         
         if let mathmaticalSymbol = sender.currentTitle{
-           brain.performOperations(mathmaticalSymbol)
+            brain.performOperations(mathmaticalSymbol)
         }
         evaluate()
     }
@@ -101,16 +118,9 @@ class AdvancedViewController: UIViewController {
         valueofM.text = " "
         brain = CalculatorBrain()
         dictionary = VariableDictionary()
+        graphButton.isEnabled = false
     }
-    @IBAction func addVariables(_ sender: UIButton) {
-        userIsInTheMiddleOfTyping  = false
-        if var str = sender.currentTitle {
-            str.removeFirst()
-            dictionary.variableDictionary[str] = displayValue
-        }
-        //back to evaluate
-        evaluate()
-    }
+
     @IBAction func usingVariables(_ sender: UIButton) {
         userIsInTheMiddleOfTyping = false
         if let variable = sender.currentTitle{
@@ -135,11 +145,15 @@ class AdvancedViewController: UIViewController {
             evaluate()
         }
     }
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let graphingViewController = segue.destination as? GraphingViewController {
+            graphingViewController.unaryFunction = { [weak self] operand in
+                self?.dictionary.variableDictionary["X"] = operand
+                return self?.brain.evaluate(using: self?.dictionary.variableDictionary).result
+            }
+            graphingViewController.navigationItem.title = brain.evaluate().description
+        }
+    }
 }
 
-/*
-@objc
-protocol AdvancedViewControllerDelegate {
-    @objc optional func collapseSidePanel()
-}
- */

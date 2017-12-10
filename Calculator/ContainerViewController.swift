@@ -22,9 +22,12 @@ class ContainerViewController: UIViewController {
     var leftViewController: SidePanelViewController? //左边滑动出现的viewController
     
     var currentState: SlideOutState = .collapsed
-    
+    //初始化每一个ViewController
     var adVancedViewController: AdvancedViewController!
     var hexViewController: HexViewController!
+    var equationNavigationViewController: EquationNavigationViewController!
+    var graphCalculatorViewController: UINavigationController!
+    //TODO...
     
     //MARK: UI methods
     override func viewDidLoad() {
@@ -41,11 +44,22 @@ class ContainerViewController: UIViewController {
     private func initAllCalculatorViewController() {
         adVancedViewController = UIStoryboard.advancedViewController()
         hexViewController = UIStoryboard.hexViewController()
+        equationNavigationViewController = UIStoryboard.equationNavigationViewController()
+        graphCalculatorViewController = UIStoryboard.graphCalculatorViewController()
+        
         adVancedViewController.view.addGestureRecognizer(setPanGestureRecognizer())
         hexViewController.view.addGestureRecognizer(setPanGestureRecognizer())
-        
+        //equationNavigationViewController.visibleViewController?.view.addGestureRecognizer(setPanGestureRecognizer())
+        //graphCalculatorViewController.visibleViewController?.view.addGestureRecognizer(setPanGestureRecognizer())
+        let equationPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleEquationPanGesture))
+        equationNavigationViewController.visibleViewController?.view.addGestureRecognizer(equationPanGestureRecognizer)
+        let graphPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleGraphPanGesture(_:)))
+        graphCalculatorViewController.visibleViewController?.view.addGestureRecognizer(graphPanGestureRecognizer)
+        //TODO...
         //除了第一个viewController外，其余的view初始应该在中间处
         adVancedViewController.view.center.x += targetPositionX
+        equationNavigationViewController.view.center.x += targetPositionX
+        graphCalculatorViewController.view.center.x += targetPositionX
     }
     private func setPanGestureRecognizer() -> UIPanGestureRecognizer{
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
@@ -113,15 +127,68 @@ extension ContainerViewController: UIGestureRecognizerDelegate {
         
         switch recognizer.state {
         case .began:
-            
             showShadowForCenterViewController(true)
         case .changed:
             if let rview = recognizer.view {
                 rview.center.x = rview.center.x +  recognizer.translation(in: view).x
+                if(rview.center.x < view.bounds.midX) {
+                    rview.center.x = view.bounds.midX
+                }
+                else if(rview.center.x > view.bounds.midX + targetPositionX) {
+                    rview.center.x = view.bounds.midX + targetPositionX
+                }
                 recognizer.setTranslation(CGPoint.zero, in: view)
             }
         case .ended:
             if let rview = recognizer.view {
+                let hasMoveHalfway = ((rview.center.x - view.bounds.midX) > targetPositionX / 2)
+                animateLeftPanel(shouldExpanded: hasMoveHalfway)
+            }
+        default:
+            break
+        }
+    }
+    @objc func handleEquationPanGesture(_ recognizer: UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .began:
+            showShadowForCenterViewController(true)
+        case .changed:
+            if let rview = equationNavigationViewController.view {
+                rview.center.x = rview.center.x +  recognizer.translation(in: view).x
+                if(rview.center.x < view.bounds.midX) {
+                    rview.center.x = view.bounds.midX
+                }
+                else if(rview.center.x > view.bounds.midX + targetPositionX) {
+                    rview.center.x = view.bounds.midX + targetPositionX
+                }
+                recognizer.setTranslation(CGPoint.zero, in: view)
+            }
+        case .ended:
+            if let rview = equationNavigationViewController.view {
+                let hasMoveHalfway = ((rview.center.x - view.bounds.midX) > targetPositionX / 2)
+                animateLeftPanel(shouldExpanded: hasMoveHalfway)
+            }
+        default:
+            break
+        }
+    }
+    @objc func handleGraphPanGesture(_ recognizer: UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .began:
+            showShadowForCenterViewController(true)
+        case .changed:
+            if let rview = graphCalculatorViewController.view {
+                rview.center.x = rview.center.x +  recognizer.translation(in: view).x
+                if(rview.center.x < view.bounds.midX) {
+                    rview.center.x = view.bounds.midX
+                }
+                else if(rview.center.x > view.bounds.midX + targetPositionX) {
+                    rview.center.x = view.bounds.midX + targetPositionX
+                }
+                recognizer.setTranslation(CGPoint.zero, in: view)
+            }
+        case .ended:
+            if let rview = graphCalculatorViewController.view {
                 let hasMoveHalfway = ((rview.center.x - view.bounds.midX) > targetPositionX / 2)
                 animateLeftPanel(shouldExpanded: hasMoveHalfway)
             }
@@ -142,6 +209,14 @@ extension ContainerViewController: SidePanelViewControllerDelegate {
         setCenterViewController(willbe: adVancedViewController)
         animateLeftPanel(shouldExpanded: false)
     }
+    func equationTapped() {
+        setCenterViewController(willbe: equationNavigationViewController)
+        animateLeftPanel(shouldExpanded: false)
+    }
+    func drawTapped() {
+        setCenterViewController(willbe: graphCalculatorViewController)
+        animateLeftPanel(shouldExpanded: false)
+    }
 }
 
 extension UIStoryboard {
@@ -156,5 +231,11 @@ extension UIStoryboard {
     }
     static func hexViewController() -> HexViewController? {
         return mainStoryboard().instantiateViewController(withIdentifier: "HexViewController") as? HexViewController
+    }
+    static func equationNavigationViewController() -> EquationNavigationViewController? {
+        return mainStoryboard().instantiateViewController(withIdentifier: "EquationNavigationViewController") as? EquationNavigationViewController
+    }
+    static func graphCalculatorViewController() -> UINavigationController? {
+        return mainStoryboard().instantiateViewController(withIdentifier: "GraphCalculatorViewController") as? UINavigationController
     }
 }

@@ -31,6 +31,10 @@ class SidePanelViewController: UIViewController {
         delegate?.advancedTapped?()
     }
     
+    @IBAction func equationTapped(_ sender: UIButton) {
+        delegate?.equationTapped?()
+    }
+    
     @IBAction func statisticsTapped(_ sender: UIButton) {
         delegate?.statisticsTapped?()
     }
@@ -58,4 +62,5 @@ protocol SidePanelViewControllerDelegate {
     @objc optional func advancedTapped()
     @objc optional func statisticsTapped()
     @objc optional func drawTapped()
+    @objc optional func equationTapped()
 }

@@ -15,6 +15,15 @@
 		56DD97FC1F74AC6B003D8B18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56DD97FB1F74AC6B003D8B18 /* Assets.xcassets */; };
 		56DD98091F74ADA7003D8B18 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56DD98081F74ADA7003D8B18 /* Default-568h@2x.png */; };
 		56F1B6A01FAD617E00626332 /* VariableDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F1B69F1FAD617E00626332 /* VariableDictionary.swift */; };
+		7349CD151FD9507F00AF60FB /* EquationSolvingBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7349CD141FD9507F00AF60FB /* EquationSolvingBrain.swift */; };
+		7349CD171FD95E4D00AF60FB /* EquationNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7349CD161FD95E4D00AF60FB /* EquationNavigationViewController.swift */; };
+		7349CD191FD96A1700AF60FB /* TwoUnknowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7349CD181FD96A1700AF60FB /* TwoUnknowsViewController.swift */; };
+		7349CD1B1FD96A2C00AF60FB /* ThreeUnknowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7349CD1A1FD96A2C00AF60FB /* ThreeUnknowsViewController.swift */; };
+		7349CD1D1FDB8BB700AF60FB /* GraphCalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7349CD1C1FDB8BB700AF60FB /* GraphCalculatorViewController.swift */; };
+		7349CD1F1FDB998200AF60FB /* GraphingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7349CD1E1FDB998200AF60FB /* GraphingViewController.swift */; };
+		7349CD231FDBD12600AF60FB /* AxesDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7349CD221FDBD12600AF60FB /* AxesDrawer.swift */; };
+		7349CD271FDC16B300AF60FB /* GraphingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7349CD261FDC16B300AF60FB /* GraphingView.swift */; };
+		7376E1941FD827A90063E2B6 /* QuadraticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7376E1931FD827A90063E2B6 /* QuadraticViewController.swift */; };
 		73DCA7721FC6C3CF0070F850 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DCA7711FC6C3CF0070F850 /* ContainerViewController.swift */; };
 		73DCA7761FC6D5EA0070F850 /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DCA7751FC6D5EA0070F850 /* SidePanelViewController.swift */; };
 		73DCA7781FC72DB50070F850 /* HexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DCA7771FC72DB50070F850 /* HexViewController.swift */; };
@@ -31,6 +40,15 @@
 		56DD98001F74AC6B003D8B18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56DD98081F74ADA7003D8B18 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		56F1B69F1FAD617E00626332 /* VariableDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableDictionary.swift; sourceTree = "<group>"; };
+		7349CD141FD9507F00AF60FB /* EquationSolvingBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationSolvingBrain.swift; sourceTree = "<group>"; };
+		7349CD161FD95E4D00AF60FB /* EquationNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationNavigationViewController.swift; sourceTree = "<group>"; };
+		7349CD181FD96A1700AF60FB /* TwoUnknowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoUnknowsViewController.swift; sourceTree = "<group>"; };
+		7349CD1A1FD96A2C00AF60FB /* ThreeUnknowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeUnknowsViewController.swift; sourceTree = "<group>"; };
+		7349CD1C1FDB8BB700AF60FB /* GraphCalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphCalculatorViewController.swift; sourceTree = "<group>"; };
+		7349CD1E1FDB998200AF60FB /* GraphingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphingViewController.swift; sourceTree = "<group>"; };
+		7349CD221FDBD12600AF60FB /* AxesDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxesDrawer.swift; sourceTree = "<group>"; };
+		7349CD261FDC16B300AF60FB /* GraphingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GraphingView.swift; path = "/Users/lbw/Developer/Xcode Projects/My-Calculator/Calculator/GraphingView.swift"; sourceTree = "<absolute>"; };
+		7376E1931FD827A90063E2B6 /* QuadraticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadraticViewController.swift; sourceTree = "<group>"; };
 		73DCA7711FC6C3CF0070F850 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		73DCA7751FC6D5EA0070F850 /* SidePanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
 		73DCA7771FC72DB50070F850 /* HexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexViewController.swift; sourceTree = "<group>"; };
@@ -68,13 +86,22 @@
 		56DD97F31F74AC6B003D8B18 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				7349CD221FDBD12600AF60FB /* AxesDrawer.swift */,
+				7376E1931FD827A90063E2B6 /* QuadraticViewController.swift */,
 				73DCA7751FC6D5EA0070F850 /* SidePanelViewController.swift */,
 				73DCA7711FC6C3CF0070F850 /* ContainerViewController.swift */,
 				56DD97F61F74AC6B003D8B18 /* AdvancedViewController.swift */,
 				56F1B69F1FAD617E00626332 /* VariableDictionary.swift */,
 				5630C1461F77EA14001EFC31 /* CalculatorBrain.swift */,
 				56DD97F81F74AC6B003D8B18 /* Main.storyboard */,
+				7349CD261FDC16B300AF60FB /* GraphingView.swift */,
+				7349CD1C1FDB8BB700AF60FB /* GraphCalculatorViewController.swift */,
+				7349CD1E1FDB998200AF60FB /* GraphingViewController.swift */,
+				7349CD181FD96A1700AF60FB /* TwoUnknowsViewController.swift */,
+				7349CD1A1FD96A2C00AF60FB /* ThreeUnknowsViewController.swift */,
+				7349CD141FD9507F00AF60FB /* EquationSolvingBrain.swift */,
 				73DCA7771FC72DB50070F850 /* HexViewController.swift */,
+				7349CD161FD95E4D00AF60FB /* EquationNavigationViewController.swift */,
 				56DD98071F74AD3D003D8B18 /* Supporting Files */,
 			);
 			path = Calculator;
@@ -165,11 +192,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				73DCA7761FC6D5EA0070F850 /* SidePanelViewController.swift in Sources */,
+				7349CD231FDBD12600AF60FB /* AxesDrawer.swift in Sources */,
+				7349CD191FD96A1700AF60FB /* TwoUnknowsViewController.swift in Sources */,
 				5630C1471F77EA14001EFC31 /* CalculatorBrain.swift in Sources */,
 				56DD97F71F74AC6B003D8B18 /* AdvancedViewController.swift in Sources */,
+				7349CD1F1FDB998200AF60FB /* GraphingViewController.swift in Sources */,
+				7376E1941FD827A90063E2B6 /* QuadraticViewController.swift in Sources */,
+				7349CD151FD9507F00AF60FB /* EquationSolvingBrain.swift in Sources */,
+				7349CD271FDC16B300AF60FB /* GraphingView.swift in Sources */,
+				7349CD1B1FD96A2C00AF60FB /* ThreeUnknowsViewController.swift in Sources */,
 				73DCA7721FC6C3CF0070F850 /* ContainerViewController.swift in Sources */,
 				56DD97F51F74AC6B003D8B18 /* AppDelegate.swift in Sources */,
+				7349CD1D1FDB8BB700AF60FB /* GraphCalculatorViewController.swift in Sources */,
 				56F1B6A01FAD617E00626332 /* VariableDictionary.swift in Sources */,
+				7349CD171FD95E4D00AF60FB /* EquationNavigationViewController.swift in Sources */,
 				73DCA7781FC72DB50070F850 /* HexViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
