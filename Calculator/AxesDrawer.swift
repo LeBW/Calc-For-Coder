@@ -2,10 +2,8 @@
 //  AxesDrawer.swift
 //  Calculator
 //
-//  Created by CS193p Instructor.
-//  Improved by lbw.
-//  Copyright © 2015-17 Stanford University.
-//  All rights reserved.
+//  Created by 李博文 on 2017/12/8.
+//  Copyright © 2017年 Nanjing University. All rights reserved.
 //
 
 import UIKit
@@ -13,20 +11,15 @@ import UIKit
 struct AxesDrawer
 {
     var color: UIColor
-    var contentScaleFactor: CGFloat             // set this from UIView's contentScaleFactor to position axes with maximum accuracy
-    var minimumPointsPerHashmark: CGFloat = 40  // public even though init doesn't accommodate setting it (it's rare to want to change it)
+    var contentScaleFactor: CGFloat
+    var minimumPointsPerHashmark: CGFloat = 40
 
     init(color: UIColor = UIColor.blue, contentScaleFactor: CGFloat = 1) {
         self.color = color
         self.contentScaleFactor = contentScaleFactor
     }
     
-    // this method is the heart of the AxesDrawer
-    // it draws in the current graphic context's coordinate system
-    // therefore origin and bounds must be in the current graphics context's coordinate system
-    // pointsPerUnit is essentially the "scale" of the axes
-    // e.g. if you wanted there to be 100 points along an axis between -1 and 1,
-    //    you'd set pointsPerUnit to 50
+    
 
     func drawAxes(in rect: CGRect, origin: CGPoint, pointsPerUnit: CGFloat)
     {

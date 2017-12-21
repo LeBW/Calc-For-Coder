@@ -66,13 +66,14 @@ struct CalculatorBrain{
         "±": Operation.unaryOperation({-$0}),
         "ln": Operation.unaryOperation({log($0)/log(M_E)}),
         "log": Operation.unaryOperation({log10($0)}),
-        "1/x": Operation.unaryOperation({1/$0}),
+        "x⁻¹": Operation.unaryOperation({1/$0}),
         "x²": Operation.unaryOperation({$0 * $0}),
         "x!": Operation.unaryOperation(factorial),
         "%": Operation.binaryOperation({ (s1:Double, s2:Double) -> Double in
             return s1.truncatingRemainder(dividingBy: s2)
         }),
-        //"AC": Operation.AC
+        "eˣ": Operation.unaryOperation({pow(M_E, $0)}),
+        "xⁿ": Operation.binaryOperation({pow($0, $1)})
     ]
     private var ans: Double?
     private struct PendingBinaryOperaion {
@@ -124,9 +125,9 @@ struct CalculatorBrain{
                     accumulator = value
                 case .unaryOperation(let function):
                     if accumulator != nil {
-                        if symbol == "x²" {
+                        if symbol == "x²" || symbol == "x!" {
                             if var temp = tempDescription {
-                                temp = " " + temp + "²"
+                                temp = " " + temp + String(symbol.last!)
                                 if resultIsPending {
                                     description += temp
                                 }
@@ -137,7 +138,22 @@ struct CalculatorBrain{
                                 
                             }
                             else{
-                                description = "(" + description + ")" + "²"
+                                description = "(" + description + ")" + String(symbol.last!)
+                            }
+                        }
+                        else if symbol == "eˣ" {
+                            if var temp = tempDescription {
+                                temp = " exp(" + temp + ")"
+                                if (resultIsPending) {
+                                    description += temp;
+                                }
+                                else {
+                                    description = temp;
+                                }
+                                tempDescription = nil
+                            }
+                            else {
+                                description = "exp(" + description + ")"
                             }
                         }
                         else {
@@ -169,7 +185,11 @@ struct CalculatorBrain{
                             description += temp
                             tempDescription = nil
                         }
-                        description += " " + symbol + " "
+                        if symbol == "xⁿ" {
+                            description += " ^ ";
+                        } else {
+                            description += " " + symbol + " "
+                        }
                         if pendingBinaryOperation != nil{
                             accumulator = pendingBinaryOperation?.perform(with: accumulator!)
                         }
