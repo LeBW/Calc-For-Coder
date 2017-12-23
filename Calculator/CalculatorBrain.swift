@@ -11,6 +11,9 @@ func factorial(operand:Double) -> Double{
     if operand.truncatingRemainder(dividingBy: 1) != 0{
         return Double.nan //出错
     }
+    if (operand > Double(Int.max)) {
+        return Double.nan
+    }
     var intOperand = Int(operand)
     var result = 1
     var isOverflow = false

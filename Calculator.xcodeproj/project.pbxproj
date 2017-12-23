@@ -27,6 +27,10 @@
 		73DCA7721FC6C3CF0070F850 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DCA7711FC6C3CF0070F850 /* ContainerViewController.swift */; };
 		73DCA7761FC6D5EA0070F850 /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DCA7751FC6D5EA0070F850 /* SidePanelViewController.swift */; };
 		73DCA7781FC72DB50070F850 /* HexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DCA7771FC72DB50070F850 /* HexViewController.swift */; };
+		73E654D31FEBA091000AD5DC /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E654D21FEBA091000AD5DC /* StatisticsViewController.swift */; };
+		73E654D51FECA43B000AD5DC /* VariableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E654D41FECA43B000AD5DC /* VariableTableViewCell.swift */; };
+		73E654D71FED2D28000AD5DC /* ResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E654D61FED2D28000AD5DC /* ResultTableViewController.swift */; };
+		73E654D91FED319F000AD5DC /* StatisticsBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E654D81FED319F000AD5DC /* StatisticsBrain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +56,10 @@
 		73DCA7711FC6C3CF0070F850 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		73DCA7751FC6D5EA0070F850 /* SidePanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
 		73DCA7771FC72DB50070F850 /* HexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexViewController.swift; sourceTree = "<group>"; };
+		73E654D21FEBA091000AD5DC /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		73E654D41FECA43B000AD5DC /* VariableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableTableViewCell.swift; sourceTree = "<group>"; };
+		73E654D61FED2D28000AD5DC /* ResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewController.swift; sourceTree = "<group>"; };
+		73E654D81FED319F000AD5DC /* StatisticsBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +102,10 @@
 				56F1B69F1FAD617E00626332 /* VariableDictionary.swift */,
 				5630C1461F77EA14001EFC31 /* CalculatorBrain.swift */,
 				56DD97F81F74AC6B003D8B18 /* Main.storyboard */,
+				73E654D81FED319F000AD5DC /* StatisticsBrain.swift */,
+				73E654D61FED2D28000AD5DC /* ResultTableViewController.swift */,
+				73E654D41FECA43B000AD5DC /* VariableTableViewCell.swift */,
+				73E654D21FEBA091000AD5DC /* StatisticsViewController.swift */,
 				7349CD261FDC16B300AF60FB /* GraphingView.swift */,
 				7349CD1C1FDB8BB700AF60FB /* GraphCalculatorViewController.swift */,
 				7349CD1E1FDB998200AF60FB /* GraphingViewController.swift */,
@@ -192,12 +204,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				73DCA7761FC6D5EA0070F850 /* SidePanelViewController.swift in Sources */,
+				73E654D51FECA43B000AD5DC /* VariableTableViewCell.swift in Sources */,
 				7349CD231FDBD12600AF60FB /* AxesDrawer.swift in Sources */,
+				73E654D91FED319F000AD5DC /* StatisticsBrain.swift in Sources */,
 				7349CD191FD96A1700AF60FB /* TwoUnknowsViewController.swift in Sources */,
 				5630C1471F77EA14001EFC31 /* CalculatorBrain.swift in Sources */,
 				56DD97F71F74AC6B003D8B18 /* AdvancedViewController.swift in Sources */,
 				7349CD1F1FDB998200AF60FB /* GraphingViewController.swift in Sources */,
 				7376E1941FD827A90063E2B6 /* QuadraticViewController.swift in Sources */,
+				73E654D31FEBA091000AD5DC /* StatisticsViewController.swift in Sources */,
 				7349CD151FD9507F00AF60FB /* EquationSolvingBrain.swift in Sources */,
 				7349CD271FDC16B300AF60FB /* GraphingView.swift in Sources */,
 				7349CD1B1FD96A2C00AF60FB /* ThreeUnknowsViewController.swift in Sources */,
@@ -206,6 +221,7 @@
 				7349CD1D1FDB8BB700AF60FB /* GraphCalculatorViewController.swift in Sources */,
 				56F1B6A01FAD617E00626332 /* VariableDictionary.swift in Sources */,
 				7349CD171FD95E4D00AF60FB /* EquationNavigationViewController.swift in Sources */,
+				73E654D71FED2D28000AD5DC /* ResultTableViewController.swift in Sources */,
 				73DCA7781FC72DB50070F850 /* HexViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

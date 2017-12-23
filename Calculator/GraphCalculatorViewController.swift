@@ -52,7 +52,7 @@ class GraphCalculatorViewController: UIViewController {
         else
         {
             if userIsInTheMiddleOfTyping{
-                if displayValue != 0 || digit != "0" {
+                if displayValue != 0 || digit != "0"  || display.text!.contains("."){
                     let textCurrentlyDisplay = display.text!
                     display.text = textCurrentlyDisplay + digit
                 }

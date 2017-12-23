@@ -22,6 +22,7 @@ class HexViewController: UIViewController {
         setHighlighed()
         //数字按钮根据当前进制进行状态更新
         updateDigitButton()
+        
     }
     //MARK: Properties
     var userIsInTheMiddleOfTyping = false
