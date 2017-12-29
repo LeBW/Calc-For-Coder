@@ -14,7 +14,8 @@ struct AxesDrawer
     var contentScaleFactor: CGFloat
     var minimumPointsPerHashmark: CGFloat = 40
 
-    init(color: UIColor = UIColor.blue, contentScaleFactor: CGFloat = 1) {
+    init(color: UIColor = UIColor.blue, contentScaleFactor: CGFloat = 1)
+    {
         self.color = color
         self.contentScaleFactor = contentScaleFactor
     }
@@ -37,7 +38,8 @@ struct AxesDrawer
 
     // the rest of this class is private
 
-    private struct Constants {
+    private struct Constants
+    {
         static let hashmarkSize: CGFloat = 6
     }
     
@@ -168,14 +170,16 @@ private extension CGPoint
 
 private extension NumberFormatter
 {
-    func string(from point: CGFloat) -> String? {
+    func string(from point: CGFloat) -> String?
+    {
         return string(from: NSNumber(value: Double(point)))
     }
 }
 
 private extension CGRect
 {
-    init(center: CGPoint, size: CGSize) {
+    init(center: CGPoint, size: CGSize)
+    {
         self.init(x: center.x-size.width/2, y: center.y-size.height/2, width: size.width, height: size.height)
     }
 }

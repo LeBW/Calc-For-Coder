@@ -26,7 +26,8 @@ class StatisticsViewController: UIViewController {
     //MARK: Model
     var variable: [Double] = []
     //MARK: Actions
-    @IBAction func addVariable(_ sender: UIButton) {
+    @IBAction func addVariable(_ sender: UIButton)
+    {
         guard let value = Double(inputField.text ?? "") else {
             let alert = UIAlertController(title: "非法数值", message: "请输入一个实数", preferredStyle: .alert)
             let closeButton = UIAlertAction(title: "Close", style: .cancel, handler: nil)
@@ -41,11 +42,13 @@ class StatisticsViewController: UIViewController {
         tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
-    @IBAction func deleteVariable(_sender: UIBarButtonItem, forEvent event: UIEvent) {
+    @IBAction func deleteVariable(_sender: UIBarButtonItem, forEvent event: UIEvent)
+    {
         guard let touch = event.allTouches?.first else {
             return
         }
-        if touch.tapCount == 1 {
+        if touch.tapCount == 1
+        {
             if tableView.isEditing {
                 tableView.setEditing(false, animated: true)
             }
@@ -53,7 +56,8 @@ class StatisticsViewController: UIViewController {
                 tableView.setEditing(true, animated: true)
             }
         }
-        else if touch.tapCount == 0 {
+        else if touch.tapCount == 0
+        {
            // print("Long press")
             let alertController = UIAlertController(title: "确定要删除所有变量吗", message: "", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "Yes", style: .default) { [weak self] _ in
@@ -83,11 +87,13 @@ class StatisticsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        if variable.isEmpty {
+        if variable.isEmpty
+        {
             inputField.becomeFirstResponder()
         }
     }
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool)
+    {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: self.view.window)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: self.view.window)
     }
@@ -109,17 +115,20 @@ class StatisticsViewController: UIViewController {
     }
     
     //MARK: Private methods
-    @objc func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification)
+    {
         if let info = notification.userInfo {
             print("keyboard will show")
             hasMoveDown = false
             let rect = info["UIKeyboardFrameEndUserInfoKey"] as! CGRect
             var upDistance: CGFloat = 0
-            if (originalKeyboardHeight == nil) {
+            if (originalKeyboardHeight == nil)
+            {
                 originalKeyboardHeight = rect.height
                 upDistance = originalKeyboardHeight!
             }
-            else {
+            else
+            {
                 upDistance = rect.height - originalKeyboardHeight!
                 originalKeyboardHeight = rect.height
             }
@@ -129,7 +138,8 @@ class StatisticsViewController: UIViewController {
             tableView.addGestureRecognizer(tapGestureRecognizer)
         }
     }
-    func scrollToBottom(_: Bool) {
+    func scrollToBottom(_: Bool)
+    {
         if let activeTextField = activeTextField {
             if activeTextField.placeholder! == "输入变量值" && variable.count > 0{
                 //选中最后一行
@@ -139,8 +149,10 @@ class StatisticsViewController: UIViewController {
         }
     }
     
-    @objc func keyboardWillHide(_ notification: Notification) {
-        if let info = notification.userInfo , !hasMoveDown{
+    @objc func keyboardWillHide(_ notification: Notification)
+    {
+        if let info = notification.userInfo , !hasMoveDown
+        {
             hasMoveDown = true
             originalKeyboardHeight = nil
             let rect = info["UIKeyboardFrameEndUserInfoKey"] as! CGRect
@@ -153,20 +165,25 @@ class StatisticsViewController: UIViewController {
             tableView.removeGestureRecognizer(tapGestureRecognizer)
         }
     }
-    @objc func tapEntireView(_ sender: UITapGestureRecognizer) {
+    @objc func tapEntireView(_ sender: UITapGestureRecognizer)
+    {
         if let activeTextField  = activeTextField {
             activeTextField.resignFirstResponder()
         }
     }
 }
-extension StatisticsViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+extension StatisticsViewController: UITextFieldDelegate
+{
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
         activeTextField = textField
     }
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField)
+    {
         activeTextField = nil
     }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
         textField.resignFirstResponder()
         if let index = Int(textField.placeholder ?? "") {
             guard let value = Double(textField.text ?? "") else {
@@ -181,13 +198,15 @@ extension StatisticsViewController: UITextFieldDelegate {
         }
         return true
     }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
         let cs = CharacterSet(charactersIn: ACCEPTABLE_CHARACTERS).inverted
         let filtered = string.components(separatedBy: cs).joined(separator: "")
         return (string == filtered)
     }
 }
-extension StatisticsViewController: UITableViewDataSource , UITableViewDelegate{
+extension StatisticsViewController: UITableViewDataSource , UITableViewDelegate
+{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -222,11 +241,13 @@ extension StatisticsViewController: UITableViewDataSource , UITableViewDelegate{
 }
 
 //extension to UIBarButtonItem , in able to add a GestureRecognizer to it
-extension UIBarButtonItem {
+extension UIBarButtonItem
+{
     var view: UIView? {
         return value(forKey: "view") as? UIView
     }
-    func addGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer) {
+    func addGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer)
+    {
         if let view = view {
             view.addGestureRecognizer(gestureRecognizer)
             print("Succeed to add GestureRecognizer")

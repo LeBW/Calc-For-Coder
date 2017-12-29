@@ -25,7 +25,8 @@ class GraphingView: UIView {
     private var snapshotView: UIView?
     private var axesDrawer = AxesDrawer(color: UIColor.black, contentScaleFactor: 1.0)
     //MARK: Gesture Recognizer handler
-    @objc func changeScale(byReactingTo pinchGestureRecognizer: UIPinchGestureRecognizer) {
+    @objc func changeScale(byReactingTo pinchGestureRecognizer: UIPinchGestureRecognizer)
+    {
         switch pinchGestureRecognizer.state {
         case .changed:
             scale *= pinchGestureRecognizer.scale
@@ -34,7 +35,8 @@ class GraphingView: UIView {
             break
         }
     }
-    @objc func moveOrigin(byReactingTo panGestureRecognizer: UIPanGestureRecognizer) {
+    @objc func moveOrigin(byReactingTo panGestureRecognizer: UIPanGestureRecognizer)
+    {
         switch panGestureRecognizer.state {
         case .changed:
             origin?.x += panGestureRecognizer.translation(in: self).x
@@ -49,7 +51,8 @@ class GraphingView: UIView {
     }
     
     //MARK: Private methods
-    private func pathOfFunction() -> UIBezierPath {
+    private func pathOfFunction() -> UIBezierPath
+    {
         let path = UIBezierPath()
         var isStartPoint = true
         if let delegate = delegate, let origin = origin {

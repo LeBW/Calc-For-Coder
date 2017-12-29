@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import MessageUI
 
-class ResultTableViewController: UITableViewController {
+class ResultTableViewController: UITableViewController
+{
     //MARK: Properties
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var sumLabel: UILabel!
@@ -18,6 +20,35 @@ class ResultTableViewController: UITableViewController {
     @IBOutlet weak var meanOfSquareLabel: UILabel!
     @IBOutlet weak var sampleVarianceLabel: UILabel!
     @IBOutlet weak var sampleDeviationLabel: UILabel!
+    
+    //MARK: Actions
+    @IBAction func sendEmail(_ sender: UIBarButtonItem)
+    {
+        if !MFMailComposeViewController.canSendMail() {
+            print("Enable to send mail")
+            return
+        }
+        let resultString =
+        """
+        对于以下变量
+        \(variables!)
+        Calc for Coder 为您计算出以下统计量：
+        
+        n = \(numberLabel.text!)
+        ΣX = \(sumLabel.text!)
+        E[X] = \(meanLabel.text!)
+        D(X) = \(varianceLabel.text!)
+        ΣX² = \(sumOfSquaresLabel.text!)
+        E[X²] = \(meanOfSquareLabel.text!)
+        S = \(sampleDeviationLabel.text!)
+        S² = \(sampleVarianceLabel.text!)
+        """
+        let composeVC = MFMailComposeViewController()
+        composeVC.mailComposeDelegate = self
+        composeVC.setSubject("Statistics from Calc For Coder")
+        composeVC.setMessageBody(resultString, isHTML: false)
+        present(composeVC, animated: true, completion: nil)
+    }
     
     //MARK: Model
     var variables: [Double]! //由前一个ViewController传过来
@@ -112,4 +143,11 @@ class ResultTableViewController: UITableViewController {
     }
     */
 
+}
+extension ResultTableViewController: MFMailComposeViewControllerDelegate
+{
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
+    {
+        controller.dismiss(animated: true, completion: nil)
+    }
 }

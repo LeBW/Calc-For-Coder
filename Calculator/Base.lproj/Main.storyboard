@@ -2745,7 +2745,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Result" id="hnJ-ar-pda">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="GI7-xb-Gzb"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="GI7-xb-Gzb">
+                            <connections>
+                                <action selector="sendEmail:" destination="unq-1l-KQc" id="I3O-sb-QFZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="meanLabel" destination="Oci-9T-mQS" id="WkF-Um-zzU"/>

@@ -152,7 +152,8 @@ class ThreeUnknowsViewController: UIViewController {
 
 }
 
-extension ThreeUnknowsViewController: UITextFieldDelegate {
+extension ThreeUnknowsViewController: UITextFieldDelegate
+{
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
     }

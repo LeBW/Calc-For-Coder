@@ -42,7 +42,8 @@ class ContainerViewController: UIViewController {
          */
     }
     //MARK: Private mathods
-    private func initAllCalculatorViewController() {
+    private func initAllCalculatorViewController()
+    {
         adVancedViewController = UIStoryboard.advancedViewController()
         hexViewController = UIStoryboard.hexViewController()
         equationNavigationViewController = UIStoryboard.equationNavigationViewController()
@@ -70,25 +71,29 @@ class ContainerViewController: UIViewController {
         statisticsViewController.view.center.x += targetPositionX
         graphCalculatorViewController.view.center.x += targetPositionX
     }
-    private func setPanGestureRecognizer() -> UIPanGestureRecognizer{
+    private func setPanGestureRecognizer() -> UIPanGestureRecognizer
+    {
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
         return panGestureRecognizer
     }
-    private func setCenterViewController(willbe centerViewController: UIViewController) {
+    private func setCenterViewController(willbe centerViewController: UIViewController)
+    {
         self.centerViewController = centerViewController
         
         view.addSubview(centerViewController.view)
         addChildViewController(centerViewController)
         centerViewController.didMove(toParentViewController: self)
     }
-    private func changeCenterViewController(to centerViewController: UIViewController) {
+    private func changeCenterViewController(to centerViewController: UIViewController)
+    {
         self.centerViewController = centerViewController
         
     }
     //MARK: Slide Out implement methods
     
     
-    func addLeftPanelViewController() {
+    func addLeftPanelViewController()
+    {
         guard leftViewController == nil else {return }
         if let vc = UIStoryboard.leftViewController() {
             addChildSidePanelController(vc)
@@ -96,14 +101,16 @@ class ContainerViewController: UIViewController {
             leftViewController?.delegate = self
         }
     }
-    func addChildSidePanelController(_ sidePanelController: SidePanelViewController) {
+    func addChildSidePanelController(_ sidePanelController: SidePanelViewController)
+    {
         view.insertSubview(sidePanelController.view, at: 0)
         
         addChildViewController(sidePanelController)
         sidePanelController.didMove(toParentViewController: self)
     }
     
-    func showShadowForCenterViewController(_ shouldShowShadow: Bool) {
+    func showShadowForCenterViewController(_ shouldShowShadow: Bool)
+    {
         if shouldShowShadow {
             centerViewController.view.layer.shadowOpacity = 0.8
         }
@@ -111,7 +118,8 @@ class ContainerViewController: UIViewController {
             centerViewController.view.layer.shadowOpacity = 0
         }
     }
-    func animateLeftPanel(shouldExpanded: Bool) {
+    func animateLeftPanel(shouldExpanded: Bool)
+    {
         if shouldExpanded {
             currentState = .leftPanelExpanded
             animateCenterPanelXPosition(targetPosition: targetPositionX)
@@ -124,14 +132,17 @@ class ContainerViewController: UIViewController {
             }
         }
     }
-    func animateCenterPanelXPosition(targetPosition: CGFloat, completion: ((Bool) -> Void)? = nil) {
+    func animateCenterPanelXPosition(targetPosition: CGFloat, completion: ((Bool) -> Void)? = nil)
+    {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {self.centerViewController.view.frame.origin.x = targetPosition}, completion: completion)
     }
 }
 
 //MARK: Extension
-extension ContainerViewController: UIGestureRecognizerDelegate {
-    @objc func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
+extension ContainerViewController: UIGestureRecognizerDelegate
+{
+    @objc func handlePanGesture(_ recognizer: UIPanGestureRecognizer)
+    {
         //let gestureIsDraggingFromLeftToRight = (recognizer.velocity(in: view).x > 0)
         
         switch recognizer.state {
@@ -157,8 +168,10 @@ extension ContainerViewController: UIGestureRecognizerDelegate {
             break
         }
     }
-    @objc func handleEquationPanGesture(_ recognizer: UIPanGestureRecognizer) {
-        switch recognizer.state {
+    @objc func handleEquationPanGesture(_ recognizer: UIPanGestureRecognizer)
+    {
+        switch recognizer.state
+        {
         case .began:
             showShadowForCenterViewController(true)
         case .changed:
@@ -181,7 +194,8 @@ extension ContainerViewController: UIGestureRecognizerDelegate {
             break
         }
     }
-    @objc func handleGraphPanGesture(_ recognizer: UIPanGestureRecognizer) {
+    @objc func handleGraphPanGesture(_ recognizer: UIPanGestureRecognizer)
+    {
         switch recognizer.state {
         case .began:
             showShadowForCenterViewController(true)
@@ -205,7 +219,8 @@ extension ContainerViewController: UIGestureRecognizerDelegate {
             break
         }
     }
-    @objc func handleStatisticsPanGesture(_ recognizer: UIPanGestureRecognizer) {
+    @objc func handleStatisticsPanGesture(_ recognizer: UIPanGestureRecognizer)
+    {
         switch recognizer.state {
         case .began:
             showShadowForCenterViewController(true)
@@ -240,49 +255,61 @@ extension ContainerViewController: UIGestureRecognizerDelegate {
 }
 
 extension ContainerViewController: SidePanelViewControllerDelegate {
-    func hexTapped() {
+    func hexTapped()
+    {
         //centerViewController change.
         setCenterViewController(willbe: hexViewController)
         animateLeftPanel(shouldExpanded: false)
     }
-    func advancedTapped() {
+    func advancedTapped()
+    {
         setCenterViewController(willbe: adVancedViewController)
         animateLeftPanel(shouldExpanded: false)
     }
-    func equationTapped() {
+    func equationTapped()
+    {
         setCenterViewController(willbe: equationNavigationViewController)
         animateLeftPanel(shouldExpanded: false)
     }
-    func statisticsTapped() {
+    func statisticsTapped()
+    {
         setCenterViewController(willbe: statisticsViewController)
         animateLeftPanel(shouldExpanded: false)
     }
-    func drawTapped() {
+    func drawTapped()
+    {
         setCenterViewController(willbe: graphCalculatorViewController)
         animateLeftPanel(shouldExpanded: false)
     }
 }
 
 extension UIStoryboard {
-    static func mainStoryboard() -> UIStoryboard {
+    static func mainStoryboard() -> UIStoryboard
+    {
         return UIStoryboard(name: "Main", bundle: Bundle.main)
     }
-    static func advancedViewController() -> AdvancedViewController? {
+    static func advancedViewController() -> AdvancedViewController?
+    {
         return mainStoryboard().instantiateViewController(withIdentifier: "AdvancedViewController") as? AdvancedViewController
     }
-    static func leftViewController() -> SidePanelViewController? {
+    static func leftViewController() -> SidePanelViewController?
+    {
         return mainStoryboard().instantiateViewController(withIdentifier: "LeftViewController") as? SidePanelViewController
     }
-    static func hexViewController() -> HexViewController? {
+    static func hexViewController() -> HexViewController?
+    {
         return mainStoryboard().instantiateViewController(withIdentifier: "HexViewController") as? HexViewController
     }
-    static func equationNavigationViewController() -> EquationNavigationViewController? {
+    static func equationNavigationViewController() -> EquationNavigationViewController?
+    {
         return mainStoryboard().instantiateViewController(withIdentifier: "EquationNavigationViewController") as? EquationNavigationViewController
     }
-    static func statisticsViewController() -> UINavigationController? {
+    static func statisticsViewController() -> UINavigationController?
+    {
         return mainStoryboard().instantiateViewController(withIdentifier: "StatisticsViewController") as? UINavigationController
     }
-    static func graphCalculatorViewController() -> UINavigationController? {
+    static func graphCalculatorViewController() -> UINavigationController?
+    {
         return mainStoryboard().instantiateViewController(withIdentifier: "GraphCalculatorViewController") as? UINavigationController
     }
 }

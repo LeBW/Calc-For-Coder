@@ -17,7 +17,8 @@ class AdvancedViewController: UIViewController {
     //var delegate: AdvancedViewControllerDelegate?
     
     var userIsInTheMiddleOfTyping:Bool = false
-    @IBAction func touchDigit(_ sender: UIButton) {
+    @IBAction func touchDigit(_ sender: UIButton)
+    {
         //brain.evaluate()
         
         let digit = sender.currentTitle!
@@ -59,7 +60,8 @@ class AdvancedViewController: UIViewController {
     
     private var brain = CalculatorBrain()
     private var dictionary = VariableDictionary()
-    private func evaluate(){
+    private func evaluate()
+    {
         let (result, isPending, description) = brain.evaluate(using: dictionary.variableDictionary)
         if result != nil {
             //could add something here to change view
@@ -82,7 +84,8 @@ class AdvancedViewController: UIViewController {
             valueofM.text = " "
         }
     }
-    @IBAction func performAction(_ sender: UIButton) {
+    @IBAction func performAction(_ sender: UIButton)
+    {
         if userIsInTheMiddleOfTyping{
             brain.setOperand(displayValue)
             userIsInTheMiddleOfTyping = false
@@ -94,7 +97,8 @@ class AdvancedViewController: UIViewController {
         evaluate()
     }
     
-    @IBAction func clear(_ sender: UIButton) {
+    @IBAction func clear(_ sender: UIButton)
+    {
         userIsInTheMiddleOfTyping = false
         displayValue = 0
         auxDisplay.text = " "
@@ -102,7 +106,8 @@ class AdvancedViewController: UIViewController {
         brain = CalculatorBrain()
         dictionary = VariableDictionary()
     }
-    @IBAction func addVariables(_ sender: UIButton) {
+    @IBAction func addVariables(_ sender: UIButton)
+    {
         userIsInTheMiddleOfTyping  = false
         if var str = sender.currentTitle {
             str.removeFirst()
@@ -111,14 +116,16 @@ class AdvancedViewController: UIViewController {
         //back to evaluate
         evaluate()
     }
-    @IBAction func usingVariables(_ sender: UIButton) {
+    @IBAction func usingVariables(_ sender: UIButton)
+    {
         userIsInTheMiddleOfTyping = false
         if let variable = sender.currentTitle{
             brain.setOperand(variable: variable)
             evaluate()
         }
     }
-    @IBAction func Undo(_ sender: UIButton) {
+    @IBAction func Undo(_ sender: UIButton)
+    {
         if userIsInTheMiddleOfTyping{
             var currentTyping = display.text!
             currentTyping.removeLast()

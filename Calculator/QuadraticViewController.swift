@@ -24,7 +24,8 @@ class QuadraticViewController: UIViewController {
     //Compute button
     @IBOutlet weak var computeButton: UIButton!
     
-    @IBAction func compute(_ sender: UIButton) {
+    @IBAction func compute(_ sender: UIButton)
+    {
         if let activeField = activeTextField {
             activeField.resignFirstResponder()
         }
@@ -48,13 +49,15 @@ class QuadraticViewController: UIViewController {
     @IBOutlet weak var x2Label: UILabel!
     
     
-    @IBAction func tapEntireView(_ sender: UITapGestureRecognizer) {
+    @IBAction func tapEntireView(_ sender: UITapGestureRecognizer)
+    {
         if let activeField = activeTextField {
             activeField.resignFirstResponder()
         }
     }
     //MARK: ViewController things
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         quadraticTerm.delegate = self;
@@ -72,14 +75,16 @@ class QuadraticViewController: UIViewController {
         computeButton.isEnabled = false
     }
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     
     //MARK: Private methods
-    func updateComputeButtonStates() {
+    func updateComputeButtonStates()
+    {
         if quadraticTerm.text != "" && primaryTerm.text != "" && constantTerm.text != "" {
             computeButton.isEnabled = true
         }
@@ -112,17 +117,21 @@ class QuadraticViewController: UIViewController {
 
 }
 extension QuadraticViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
         activeTextField = textField
     }
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField)
+    {
         activeTextField = nil
     }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
         textField.resignFirstResponder()
         return true
     }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
         let cs = CharacterSet(charactersIn: ACCEPTABLE_CHARACTERS).inverted
         let filtered = string.components(separatedBy: cs).joined(separator: "")
         return (string == filtered)

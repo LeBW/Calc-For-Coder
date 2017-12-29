@@ -90,7 +90,8 @@ class TwoUnknowsViewController: UIViewController {
     
     
     //MARK: Private methods
-    func updateComputeButtonStates() {
+    func updateComputeButtonStates()
+    {
         if a1Field.text != "" && b1Field.text != "" && c1Field.text != "" && a2Field.text != "" && b2Field.text != "" && c2Field.text != ""{
             computeButton.isEnabled = true
         }
@@ -101,12 +102,14 @@ class TwoUnknowsViewController: UIViewController {
     @objc func textFieldDidChanged(textfield: UITextField) {
         updateComputeButtonStates()
     }
-    func popOverArgumentError() {
+    func popOverArgumentError()
+    {
         let alert = UIAlertController(title: "参数传入错误！", message: "请传入正确的参数", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Close", style: .destructive, handler: nil))
         self.present(alert, animated: false, completion: nil)
     }
-    func popOverSolutionError() {
+    func popOverSolutionError()
+    {
         let alert = UIAlertController(title: "此方程无解！", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Close", style: .destructive, handler: nil))
         self.present(alert, animated: false, completion: nil)
@@ -123,7 +126,8 @@ class TwoUnknowsViewController: UIViewController {
 
 }
 
-extension TwoUnknowsViewController: UITextFieldDelegate {
+extension TwoUnknowsViewController: UITextFieldDelegate
+{
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
     }

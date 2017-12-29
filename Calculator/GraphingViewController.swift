@@ -40,7 +40,8 @@ class GraphingViewController: UIViewController {
     }
     
     //MARK: Private methods
-    @objc func hideNavigationBar(byReactingTo tapGestureRecognizer: UITapGestureRecognizer) {
+    @objc func hideNavigationBar(byReactingTo tapGestureRecognizer: UITapGestureRecognizer)
+    {
         if let navigationController = self.navigationController {
             if navigationController.isNavigationBarHidden {
                 navigationController.setNavigationBarHidden(false, animated: true)
@@ -61,7 +62,8 @@ class GraphingViewController: UIViewController {
     */
 
 }
-extension GraphingViewController: GraphingViewDelegate {
+extension GraphingViewController: GraphingViewDelegate
+{
     
     func getYValue(x: CGFloat) -> CGFloat? {
         if let yValue = unaryFunction?(Double(x)) {
